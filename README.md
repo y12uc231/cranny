@@ -2,6 +2,23 @@
 
 Threadline is a small, local-first browser with a tab steward built into its frame. It behaves like a familiar Chromium browser, but treats open tabs as a working set with intent, memory pressure, and a recoverable trail.
 
+## Why the world needs another browser
+
+The browser is where much of modern work happens, but its basic unit is still a disposable tab. A tab remembers a URL, not why you opened it. As work expands, tabs become a fragile to-do list: they accumulate until the browser consumes too much memory, yet closing them feels risky because it erases the context you meant to return to.
+
+Most AI browsers add a chatbot or broad web automation to that old model. Threadline starts with a different question: **what if the browser understood and protected the thread of work behind the tabs?**
+
+That leads to a different kind of browser:
+
+- **Threads, not tab piles.** A tab can carry an intent—“compare ASR papers,” “plan the launch,” or “read this later”—and organization follows that intent instead of only the website or window it came from.
+- **Closing becomes a save operation.** Threadline preserves the title, link, intent, timestamps, and optional page excerpt in a searchable local trail. You can close a tab without trusting yourself to remember it.
+- **Memory is part of the product.** Threadline watches its real process memory, warns before the working set becomes unhealthy, and can hibernate old background tabs while keeping their trail intact.
+- **The agent is a steward, not a sidebar chatbot.** It can act across the browser—open, find, switch, group, deduplicate, close, and hibernate tabs—while helping you understand the page in front of you.
+- **Useful without an AI subscription.** Core organization and memory commands run locally. Claude, OpenAI, compatible APIs, and Ollama are replaceable reasoning providers rather than the foundation of ordinary browsing.
+- **Bounded by design.** The agent receives browser tools, not a hidden path into the filesystem or terminal. Page content is untrusted, and proposed actions pass through a small allowlist.
+
+Threadline is not trying to win by putting more AI into Chrome. Its bet is that the next browser should make attention, intent, and memory first-class objects—so people can keep their train of thought without keeping every tab alive.
+
 This repository contains a working macOS-first MVP. It is intentionally narrower than a general “AI browser”:
 
 - Tell the agent to open, switch, group, pin, close, or hibernate tabs.

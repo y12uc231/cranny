@@ -1,91 +1,78 @@
 # Threadline
 
-Threadline is a small, local-first browser with a tab steward built into its frame. It behaves like a familiar Chromium browser, but treats open tabs as a working set with intent, memory pressure, and a recoverable trail.
+**A local-first browser that remembers why your tabs are open—and helps you close them without losing the thread.**
+
+[![Threadline demo: organizing tabs, reclaiming memory, and recovering a closed tab](docs/assets/threadline-demo.gif)](docs/assets/threadline-demo.mp4)
+
+<sub>Real 13-second MVP demo. Click for the higher-quality video.</sub>
 
 ## Why the world needs another browser
 
-The browser is where much of modern work happens, but its basic unit is still a disposable tab. A tab remembers a URL, not why you opened it. As work expands, tabs become a fragile to-do list: they accumulate until the browser consumes too much memory, yet closing them feels risky because it erases the context you meant to return to.
+Browsers remember addresses, not intent. Tabs become a fragile to-do list: they consume memory, but closing them feels like throwing work away. Most AI browsers add a chatbot without changing that underlying model.
 
-Most AI browsers add a chatbot or broad web automation to that old model. Threadline starts with a different question: **what if the browser understood and protected the thread of work behind the tabs?**
+Threadline makes the **thread of work** the primary object:
 
-That leads to a different kind of browser:
+- Attach intent to tabs and organize around what you are doing.
+- Turn closing into a save operation with a searchable local trail.
+- Watch real memory pressure and hibernate background tabs safely.
+- Ask one bounded agent to act across the browser, not just discuss a page.
 
-- **Threads, not tab piles.** A tab can carry an intent—“compare ASR papers,” “plan the launch,” or “read this later”—and organization follows that intent instead of only the website or window it came from.
-- **Closing becomes a save operation.** Threadline preserves the title, link, intent, timestamps, and optional page excerpt in a searchable local trail. You can close a tab without trusting yourself to remember it.
-- **Memory is part of the product.** Threadline watches its real process memory, warns before the working set becomes unhealthy, and can hibernate old background tabs while keeping their trail intact.
-- **The agent is a steward, not a sidebar chatbot.** It can act across the browser—open, find, switch, group, deduplicate, close, and hibernate tabs—while helping you understand the page in front of you.
-- **Useful without an AI subscription.** Core organization and memory commands run locally. Claude, OpenAI, compatible APIs, and Ollama are replaceable reasoning providers rather than the foundation of ordinary browsing.
-- **Bounded by design.** The agent receives browser tools, not a hidden path into the filesystem or terminal. Page content is untrusted, and proposed actions pass through a small allowlist.
+The bet is simple: people should be able to keep their train of thought without keeping every tab alive.
 
-Threadline is not trying to win by putting more AI into Chrome. Its bet is that the next browser should make attention, intent, and memory first-class objects—so people can keep their train of thought without keeping every tab alive.
+## What works today
 
-This repository contains a working macOS-first MVP. It is intentionally narrower than a general “AI browser”:
-
-- Tell the agent to open, switch, group, pin, close, or hibernate tabs.
-- Give a tab an intent such as “compare ASR papers” so its purpose survives the session.
-- Search a local browsing trail after a tab is closed. The title, URL, intent, timestamps, and optional page excerpt remain recoverable.
-- See live memory pressure. At the configured wall, Threadline offers to hibernate old background tabs; it never discards their trail.
-- Use useful commands without any model, or connect Claude, OpenAI, an OpenAI-compatible endpoint, or local Ollama.
-- Push to talk through Chromium’s system speech-recognition path when it is available.
-
-Threadline has no filesystem or shell tool. Page text is treated as untrusted input, and model-proposed actions pass through a fixed browser-only allowlist.
+- Real sandboxed Chromium tabs in a minimal macOS shell.
+- Intent-based grouping, duplicate cleanup, pinning, closing, and hibernation.
+- A local trail containing URLs, titles, intent, timestamps, and optional excerpts.
+- Live memory monitoring with reversible “make room” actions.
+- Built-in commands that need no API key.
+- Optional Claude, OpenAI, OpenAI-compatible, and Ollama reasoning.
+- Browser-only agent tools—no filesystem or terminal access.
 
 ## Run it
 
-Requirements: macOS, Node.js 22+, and npm.
+Requires macOS, Node.js 22+, and npm.
 
 ```bash
+git clone https://github.com/y12uc231/threadline-browser.git
+cd threadline-browser
 npm install
 npm start
 ```
 
-To launch it as `threadline` from any terminal:
+To launch it later as `threadline`:
 
 ```bash
 npm link
 threadline
 ```
 
-Useful shortcuts:
+Shortcuts: `⌘L` address bar · `⌘T` new tab · `⌘W` archive and close · `⌘K` agent
 
-- `⌘L` focuses the address bar.
-- `⌘T` opens a tab.
-- `⌘W` archives and closes the active tab.
-- `⌘K` focuses the agent.
+## Try asking
 
-## Things to say
+```text
+Organize my tabs
+Set this tab intent to compare agent browsers
+What tabs do I have open?
+Save memory
+Find context compaction in my journal
+```
 
-These commands work locally, without an API key:
+Core tab and memory commands run locally. Configure a model in Settings for page summaries, cross-tab reasoning, navigation, and interaction with visible page controls. API keys use the OS keychain when available.
 
-- “Organize my tabs”
-- “Close duplicate tabs”
-- “Save memory”
-- “What tabs do I have open?”
-- “Set this tab intent to compare agent browsers”
-- “Open electronjs.org”
-- “Find context compaction in my journal”
+## Project notes
 
-With a model configured, Threadline can also summarize the active page, reason over the working set, navigate, and interact with visible page controls. Settings support Anthropic/Claude, OpenAI, OpenAI-compatible APIs, and Ollama. API keys are encrypted with Electron `safeStorage` when the OS keychain is available; otherwise they remain in memory for the current session.
+This is a development MVP, not yet a daily-driver Chrome replacement. The next milestones are packaged builds, downloads and permissions, profile import, and confirmation gates for consequential page actions.
 
-## How it is built
-
-The shell is Electron 44 with one sandboxed `WebContentsView` per awake tab. Sleeping tabs keep metadata but no renderer process. A small main-process controller owns navigation and exposes a narrow IPC bridge to the local shell. State is written atomically to one JSON file under Electron’s per-user application-data directory.
-
-No framework or runtime service is required. Electron is the only package dependency. The implementation favors a small inspectable surface over a Chromium fork for the first version.
-
-Read [PRODUCT.md](docs/PRODUCT.md), [ARCHITECTURE.md](docs/ARCHITECTURE.md), [PRIOR_ART.md](docs/PRIOR_ART.md), and [SECURITY.md](docs/SECURITY.md) for the product thesis and technical boundaries.
-
-## Status and limits
-
-This is a development MVP, not yet a daily-driver Chrome replacement. It does not currently ship an updater, packaged binaries, extension support, profile import, password-manager integration, download UI, multi-window sessions, or transaction confirmations. OAuth popups may open as normal tabs. Those are deliberate follow-on milestones after the tab-memory loop is validated.
-
-Run checks with:
+- [Product thesis and roadmap](docs/PRODUCT.md)
+- [Architecture](docs/ARCHITECTURE.md)
+- [Prior art](docs/PRIOR_ART.md)
+- [Security model](docs/SECURITY.md)
 
 ```bash
 npm test
 npm run check
 ```
 
-## License
-
-MIT
+MIT licensed.

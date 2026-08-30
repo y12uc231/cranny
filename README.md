@@ -2,9 +2,7 @@
 
 **A local-first browser that remembers why your tabs are open—and helps you close them without losing the thread.**
 
-[![Threadline demo: organizing tabs, reclaiming memory, and recovering a closed tab](docs/assets/threadline-demo.gif)](docs/assets/threadline-demo.mp4)
-
-<sub>Real 13-second MVP demo. Click for the higher-quality video.</sub>
+![Threadline demo: organizing tabs, reclaiming memory, and recovering a closed tab](docs/assets/threadline-demo.gif)
 
 ## Why the world needs another browser
 

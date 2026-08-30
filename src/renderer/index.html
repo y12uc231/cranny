@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https:; style-src 'self'; script-src 'self'; connect-src 'none';" />
+    <title>Threadline</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <div class="brand" aria-label="Threadline">
+          <span class="brand-mark">⌁</span>
+          <span>Threadline</span>
+        </div>
+        <nav class="nav-controls" aria-label="Browser navigation">
+          <button id="backButton" class="icon-button" title="Back" aria-label="Back">←</button>
+          <button id="forwardButton" class="icon-button" title="Forward" aria-label="Forward">→</button>
+          <button id="reloadButton" class="icon-button" title="Reload" aria-label="Reload">↻</button>
+        </nav>
+        <form id="addressForm" class="address-form">
+          <span class="address-status" aria-hidden="true">●</span>
+          <input id="addressInput" autocomplete="off" spellcheck="false" aria-label="Address and search" placeholder="Search or enter an address" />
+        </form>
+        <button id="newTabTopButton" class="icon-button new-tab-top" title="New tab" aria-label="New tab">＋</button>
+        <button id="memoryPill" class="memory-pill" title="Open memory controls">
+          <span class="memory-dot"></span>
+          <span id="memoryPillText">Memory calm</span>
+        </button>
+      </header>
+
+      <aside class="tabs-sidebar" aria-label="Open tabs">
+        <div class="sidebar-heading">
+          <div>
+            <span class="eyebrow">Your working set</span>
+            <h1>Threads</h1>
+          </div>
+          <button id="newTabButton" class="round-button" title="New tab" aria-label="New tab">＋</button>
+        </div>
+        <div id="tabsList" class="tabs-list"></div>
+        <div class="sidebar-actions">
+          <button id="organizeButton" class="secondary-button">
+            <span>⌘</span>
+            Organize tabs
+          </button>
+          <button id="trailButton" class="secondary-button">
+            <span>↗</span>
+            <span>Browsing trail</span>
+            <span id="journalCount" class="count-badge">0</span>
+          </button>
+        </div>
+      </aside>
+
+      <aside class="assistant-sidebar" aria-label="Threadline agent">
+        <div class="panel-tabs" role="tablist">
+          <button class="panel-tab active" data-panel="agent" role="tab">Agent</button>
+          <button class="panel-tab" data-panel="trail" role="tab">Trail</button>
+          <button class="panel-tab" data-panel="settings" role="tab">Settings</button>
+        </div>
+
+        <section id="agentPanel" class="panel active">
+          <div class="agent-heading">
+            <div class="agent-orb"><span></span></div>
+            <div>
+              <h2>Tab steward</h2>
+              <p id="agentStatus">Ready to keep the thread.</p>
+            </div>
+          </div>
+          <div id="memoryNotice" class="memory-notice hidden">
+            <div>
+              <strong id="memoryNoticeTitle">Memory is crowded</strong>
+              <p id="memoryNoticeText"></p>
+            </div>
+            <button id="memoryNoticeAction">Make room</button>
+          </div>
+          <div id="messages" class="messages" aria-live="polite">
+            <article class="message assistant">
+              <p>I’ll keep track of why tabs are open, organize them when they drift, and preserve a trail when they close.</p>
+              <div class="suggestions">
+                <button data-prompt="Organize my tabs">Organize my tabs</button>
+                <button data-prompt="What tabs do I have open?">What’s open?</button>
+                <button data-prompt="Memory status">Check memory</button>
+              </div>
+            </article>
+          </div>
+          <form id="agentForm" class="agent-composer">
+            <textarea id="agentInput" rows="2" placeholder="Tell Threadline what to do…" aria-label="Message the agent"></textarea>
+            <div class="composer-footer">
+              <button type="button" id="voiceButton" class="voice-button" title="Speak" aria-label="Speak">◉</button>
+              <span class="shortcut-hint">⌘K</span>
+              <button type="submit" id="sendButton" class="send-button" aria-label="Send">↑</button>
+            </div>
+          </form>
+        </section>
+
+        <section id="trailPanel" class="panel">
+          <div class="section-heading">
+            <div>
+              <span class="eyebrow">Nothing gets lost</span>
+              <h2>Browsing trail</h2>
+            </div>
+          </div>
+          <label class="search-field">
+            <span>⌕</span>
+            <input id="trailSearch" placeholder="Search titles, links, or intent" />
+          </label>
+          <div id="trailList" class="trail-list"></div>
+        </section>
+
+        <section id="settingsPanel" class="panel">
+          <div class="section-heading">
+            <div>
+              <span class="eyebrow">Bring your own model</span>
+              <h2>Settings</h2>
+            </div>
+          </div>
+          <form id="settingsForm" class="settings-form">
+            <label>
+              <span>AI provider</span>
+              <select id="providerSelect">
+                <option value="none">Built-in tab commands only</option>
+                <option value="anthropic">Anthropic / Claude</option>
+                <option value="openai">OpenAI</option>
+                <option value="openai-compatible">OpenAI-compatible API</option>
+                <option value="ollama">Ollama (local)</option>
+              </select>
+            </label>
+            <label>
+              <span>Model</span>
+              <input id="modelInput" placeholder="e.g. your preferred Claude model" />
+            </label>
+            <label>
+              <span>Base URL <small>optional</small></span>
+              <input id="baseUrlInput" placeholder="Provider default" />
+            </label>
+            <label>
+              <span>API key</span>
+              <input id="apiKeyInput" type="password" autocomplete="off" placeholder="Saved in the OS keychain" />
+              <small id="apiKeyStatus">No key saved</small>
+            </label>
+            <div class="divider"></div>
+            <label>
+              <span>Memory comfort limit</span>
+              <div class="range-row">
+                <input id="memoryLimitInput" type="range" min="512" max="8192" step="128" />
+                <output id="memoryLimitOutput">2.2 GB</output>
+              </div>
+            </label>
+            <label class="toggle-row">
+              <span>
+                <strong>Auto-hibernate at the wall</strong>
+                <small>Only inactive, unpinned tabs</small>
+              </span>
+              <input id="autoHibernateInput" type="checkbox" />
+            </label>
+            <label class="toggle-row">
+              <span>
+                <strong>Keep page excerpts</strong>
+                <small>Local-only previews in your trail</small>
+              </span>
+              <input id="storeExcerptsInput" type="checkbox" />
+            </label>
+            <label class="toggle-row">
+              <span>
+                <strong>System voice input</strong>
+                <small>Push to talk in the agent panel</small>
+              </span>
+              <input id="voiceModeInput" type="checkbox" />
+            </label>
+            <button class="primary-button" type="submit">Save settings</button>
+            <p id="settingsFeedback" class="form-feedback"></p>
+          </form>
+        </section>
+      </aside>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>

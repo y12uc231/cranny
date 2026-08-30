@@ -1,0 +1,23 @@
+{
+  "name": "threadline-browser",
+  "productName": "Threadline",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A calm, local-first browser with an agent that manages tabs, intent, and memory.",
+  "main": "src/main.cjs",
+  "bin": {
+    "threadline": "bin/threadline.cjs"
+  },
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --dev",
+    "test": "node --test",
+    "check": "node --check src/main.cjs && node --check src/preload.cjs && node --check src/agent.cjs && node --check src/store.cjs && node --check src/organizer.cjs && node --check src/renderer/app.js"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "devDependencies": {
+    "electron": "44.0.0"
+  }
+}

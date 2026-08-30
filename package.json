@@ -3,6 +3,7 @@
   "productName": "Threadline",
   "version": "0.1.0",
   "private": true,
+  "license": "SEE LICENSE IN LICENSE",
   "description": "A calm, local-first browser with an agent that manages tabs, intent, and memory.",
   "main": "src/main.cjs",
   "bin": {

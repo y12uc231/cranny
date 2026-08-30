@@ -73,7 +73,9 @@ npm test
 npm run check
 ```
 
-MIT licensed.
+Source available under the [PolyForm Shield License 1.0.0](LICENSE). It does
+not permit using this code to provide a competing product; see
+[commercial licensing](COMMERCIAL-LICENSING.md) for separate permission.
 
 ## A weekend side project
 

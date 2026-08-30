@@ -74,3 +74,7 @@ npm run check
 ```
 
 MIT licensed.
+
+## A weekend side project
+
+I'm building Threadline as a side project on weekends. It started from a simple feeling: there should be a good, usable browser that helps people manage their work instead of making them manage their tabs.

@@ -1,13 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title description">
   <title id="title">Cranny</title>
-  <desc id="description">A rounded C-shaped shelter holding a small amber dot.</desc>
+  <desc id="description">Three browsing trails folding into progressively smaller protected corners.</desc>
   <rect width="128" height="128" rx="34" fill="#1d654b"/>
-  <path
-    d="M88 34a39 39 0 1 0 0 60"
-    fill="none"
-    stroke="#fffefa"
-    stroke-linecap="round"
-    stroke-width="18"
-  />
-  <circle cx="91" cy="64" r="9" fill="#e2a35b"/>
+  <path d="M29 32H98V53" fill="none" stroke="#fffefa" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/>
+  <path d="M29 61H73V81" fill="none" stroke="#fffefa" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/>
+  <path d="M29 90H50V99" fill="none" stroke="#e2a35b" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/>
 </svg>

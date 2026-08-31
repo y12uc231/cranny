@@ -2,7 +2,7 @@
 
 ## Why Electron first
 
-Threadline needs real logged-in web pages, independent renderer lifecycles, Chromium DevTools primitives, and a native shell. Electron’s current `WebContentsView` provides that with a much smaller build and maintenance surface than a Chromium fork. The tradeoff is that Electron is not yet a complete consumer browser platform; extensions, profile import, permissions, downloads, and updates require product work.
+Cranny needs real logged-in web pages, independent renderer lifecycles, Chromium DevTools primitives, and a native shell. Electron’s current `WebContentsView` provides that with a much smaller build and maintenance surface than a Chromium fork. The tradeoff is that Electron is not yet a complete consumer browser platform; extensions, profile import, permissions, downloads, and updates require product work.
 
 The code deliberately does not adopt a large browser-agent framework in v0.1. Browser-use and CDP-oriented harnesses are useful references for autonomous task execution, but the differentiator here is lifecycle and memory stewardship inside the daily browser.
 

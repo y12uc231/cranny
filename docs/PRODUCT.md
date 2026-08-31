@@ -4,15 +4,15 @@
 
 The browser’s primary object should not be the tab. It should be the user’s thread of intent.
 
-Tabs are transient renderers. Threadline keeps a durable local record of what a page was, why it mattered, and what happened to it. The agent is a steward of that working set rather than a general assistant pasted into a sidebar.
+Tabs are transient renderers. Cranny keeps a durable local record of what a page was, why it mattered, and what happened to it. The agent is a steward of that working set rather than a general assistant pasted into a sidebar.
 
 ## Why another browser
 
 Today’s browser asks people to use live tabs as external memory. The result is predictable: a growing working set, rising memory use, anxiety about closing anything, and almost no record of the intent connecting one page to another. A history of URLs is not enough because it records where someone went, not what they were trying to accomplish.
 
-AI browsers have mostly layered conversation and general automation onto this same tab model. Threadline’s product wedge is more fundamental and intentionally smaller: turn the browser into a lossless, memory-aware steward of active work. The differentiator is the complete loop—intent attached to tabs, agent-directed organization, explicit memory pressure, reversible hibernation, and a searchable trail after closing—not any individual AI feature.
+AI browsers have mostly layered conversation and general automation onto this same tab model. Cranny’s product wedge is more fundamental and intentionally smaller: turn the browser into a lossless, memory-aware steward of active work. The differentiator is the complete loop—intent attached to tabs, agent-directed organization, explicit memory pressure, reversible hibernation, and a searchable trail after closing—not any individual AI feature.
 
-If Threadline works, users should feel safe closing tabs because the browser has preserved the thread. That is the behavior change the product exists to create.
+If Cranny works, users should feel safe closing tabs because the browser has preserved the thread. That is the behavior change the product exists to create.
 
 ## Product principles
 
@@ -27,7 +27,7 @@ If Threadline works, users should feel safe closing tabs because the browser has
 ## MVP loop
 
 1. Browse normally in real Chromium pages.
-2. Tell Threadline why a tab exists, or let it infer a coarse group.
+2. Tell Cranny why a tab exists, or let it infer a coarse group.
 3. Ask the steward to act across open tabs.
 4. Watch the working-set memory indicator.
 5. At pressure, hibernate old background tabs.

@@ -50,7 +50,7 @@ function mergeDefaults(value = {}) {
   };
 }
 
-class ThreadlineStore {
+class CrannyStore {
   constructor(filePath) {
     this.filePath = filePath;
     this.state = this.#load();
@@ -163,4 +163,4 @@ function safeDomain(url) {
   }
 }
 
-module.exports = { DEFAULTS, ThreadlineStore, makeId, safeDomain, mergeDefaults };
+module.exports = { DEFAULTS, CrannyStore, makeId, safeDomain, mergeDefaults };

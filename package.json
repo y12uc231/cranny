@@ -1,13 +1,13 @@
 {
-  "name": "threadline-browser",
-  "productName": "Threadline",
+  "name": "cranny",
+  "productName": "Cranny",
   "version": "0.1.0",
   "private": true,
   "license": "SEE LICENSE IN LICENSE",
   "description": "A calm, local-first browser with an agent that manages tabs, intent, and memory.",
   "main": "src/main.cjs",
   "bin": {
-    "threadline": "bin/threadline.cjs"
+    "cranny": "bin/cranny.cjs"
   },
   "scripts": {
     "start": "electron .",

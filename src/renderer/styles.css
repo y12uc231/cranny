@@ -54,14 +54,10 @@ button { color: inherit; }
 }
 
 .brand-mark {
-  display: grid;
-  place-items: center;
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  color: var(--white);
-  background: var(--green);
-  font-size: 18px;
+  display: block;
+  width: 26px;
+  height: 26px;
+  filter: drop-shadow(0 1px 1px rgba(30, 40, 36, 0.12));
 }
 
 .nav-controls { display: flex; gap: 2px; padding: 0 12px; }

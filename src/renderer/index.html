@@ -4,15 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https:; style-src 'self'; script-src 'self'; connect-src 'none';" />
-    <title>Threadline</title>
+    <title>Cranny</title>
+    <link rel="icon" href="assets/cranny-mark.svg" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <main class="app-shell">
       <header class="topbar">
-        <div class="brand" aria-label="Threadline">
-          <span class="brand-mark">⌁</span>
-          <span>Threadline</span>
+        <div class="brand" aria-label="Cranny">
+          <img class="brand-mark" src="assets/cranny-mark.svg" alt="" />
+          <span>Cranny</span>
         </div>
         <nav class="nav-controls" aria-label="Browser navigation">
           <button id="backButton" class="icon-button" title="Back" aria-label="Back">←</button>
@@ -52,7 +53,7 @@
         </div>
       </aside>
 
-      <aside class="assistant-sidebar" aria-label="Threadline agent">
+      <aside class="assistant-sidebar" aria-label="Cranny agent">
         <div class="panel-tabs" role="tablist">
           <button class="panel-tab active" data-panel="agent" role="tab">Agent</button>
           <button class="panel-tab" data-panel="trail" role="tab">Trail</button>
@@ -64,7 +65,7 @@
             <div class="agent-orb"><span></span></div>
             <div>
               <h2>Tab steward</h2>
-              <p id="agentStatus">Ready to keep the thread.</p>
+              <p id="agentStatus">Ready to keep your place.</p>
             </div>
           </div>
           <div id="memoryNotice" class="memory-notice hidden">
@@ -85,7 +86,7 @@
             </article>
           </div>
           <form id="agentForm" class="agent-composer">
-            <textarea id="agentInput" rows="2" placeholder="Tell Threadline what to do…" aria-label="Message the agent"></textarea>
+            <textarea id="agentInput" rows="2" placeholder="Tell Cranny what to do…" aria-label="Message the agent"></textarea>
             <div class="composer-footer">
               <button type="button" id="voiceButton" class="voice-button" title="Speak" aria-label="Speak">◉</button>
               <span class="shortcut-hint">⌘K</span>

@@ -3,13 +3,13 @@ const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
 const test = require('node:test');
-const { ThreadlineStore } = require('../src/store.cjs');
+const { CrannyStore } = require('../src/store.cjs');
 
 function temporaryStore() {
-  const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'threadline-test-'));
+  const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'cranny-test-'));
   return {
     directory,
-    store: new ThreadlineStore(path.join(directory, 'threadline.json')),
+    store: new CrannyStore(path.join(directory, 'cranny.json')),
   };
 }
 
@@ -21,7 +21,7 @@ test('starts with private, conservative defaults and persists mutations', (t) =>
   assert.equal(store.read().settings.autoHibernate, false);
 
   store.updateSettings({ memoryLimitMb: 1600, ai: { provider: 'anthropic', model: 'test-model' } });
-  const reloaded = new ThreadlineStore(path.join(directory, 'threadline.json'));
+  const reloaded = new CrannyStore(path.join(directory, 'cranny.json'));
   assert.equal(reloaded.read().settings.memoryLimitMb, 1600);
   assert.equal(reloaded.read().settings.ai.provider, 'anthropic');
   assert.equal(reloaded.read().settings.ai.model, 'test-model');

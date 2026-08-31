@@ -1,14 +1,16 @@
-# Threadline
+# Cranny
 
-**A local-first browser that remembers why your tabs are open—and helps you close them without losing the thread.**
+<img src="src/renderer/assets/cranny-mark.svg" alt="Cranny logo" width="72" />
 
-![Threadline demo: organizing tabs, reclaiming memory, and recovering a closed tab](docs/assets/threadline-demo.gif)
+**A local-first browser that remembers why your tabs are open—and catches what would otherwise slip through the cracks.**
+
+![Cranny demo: organizing tabs, reclaiming memory, and recovering a closed tab](docs/assets/cranny-demo.gif)
 
 ## Why the world needs another browser
 
 Browsers remember addresses, not intent. Tabs become a fragile to-do list: they consume memory, but closing them feels like throwing work away. Most AI browsers add a chatbot without changing that underlying model.
 
-Threadline makes the **thread of work** the primary object:
+Cranny makes the **intent behind your work** the primary object:
 
 - Attach intent to tabs and organize around what you are doing.
 - Turn closing into a save operation with a searchable local trail.
@@ -32,17 +34,17 @@ The bet is simple: people should be able to keep their train of thought without 
 Requires macOS, Node.js 22+, and npm.
 
 ```bash
-git clone https://github.com/y12uc231/threadline-browser.git
-cd threadline-browser
+git clone https://github.com/y12uc231/cranny.git
+cd cranny
 npm install
 npm start
 ```
 
-To launch it later as `threadline`:
+To launch it later as `cranny`:
 
 ```bash
 npm link
-threadline
+cranny
 ```
 
 Shortcuts: `⌘L` address bar · `⌘T` new tab · `⌘W` archive and close · `⌘K` agent
@@ -79,4 +81,4 @@ not permit using this code to provide a competing product; see
 
 ## A weekend side project
 
-I'm building Threadline as a side project on weekends. It started from a simple feeling: there should be a good, usable browser that helps people manage their work instead of making them manage their tabs.
+I'm building Cranny as a side project on weekends. It started from a simple feeling: there should be a good, usable browser that helps people manage their work instead of making them manage their tabs.

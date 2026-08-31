@@ -1,4 +1,4 @@
-const api = window.threadline;
+const api = window.cranny;
 const elements = Object.fromEntries(
   [
     'backButton', 'forwardButton', 'reloadButton', 'addressForm', 'addressInput', 'newTabTopButton',

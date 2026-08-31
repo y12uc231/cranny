@@ -6,7 +6,7 @@ function subscribe(channel, callback) {
   return () => ipcRenderer.removeListener(channel, listener);
 }
 
-contextBridge.exposeInMainWorld('threadline', {
+contextBridge.exposeInMainWorld('cranny', {
   getState: () => ipcRenderer.invoke('browser:get-state'),
   createTab: (input) => ipcRenderer.invoke('browser:create-tab', input),
   activateTab: (tabId) => ipcRenderer.invoke('browser:activate-tab', tabId),

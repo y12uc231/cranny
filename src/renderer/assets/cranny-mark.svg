@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title description">
+  <title id="title">Cranny</title>
+  <desc id="description">A rounded C-shaped shelter holding a small amber dot.</desc>
+  <rect width="128" height="128" rx="34" fill="#1d654b"/>
+  <path
+    d="M88 34a39 39 0 1 0 0 60"
+    fill="none"
+    stroke="#fffefa"
+    stroke-linecap="round"
+    stroke-width="18"
+  />
+  <circle cx="91" cy="64" r="9" fill="#e2a35b"/>
+</svg>

@@ -38,7 +38,7 @@ function parseLocalCommand(prompt, context) {
   if (/^(memory|memory status|how much memory)/.test(text)) {
     const memory = context.memory || {};
     return response(
-      `Threadline is using about ${Math.round(memory.totalMb || 0)} MB of its ${memory.limitMb || 0} MB comfort limit. Pressure is ${memory.status || 'unknown'}.`,
+      `Cranny is using about ${Math.round(memory.totalMb || 0)} MB of its ${memory.limitMb || 0} MB comfort limit. Pressure is ${memory.status || 'unknown'}.`,
       [],
     );
   }
@@ -81,7 +81,7 @@ function response(message, actions) {
 }
 
 function systemPrompt() {
-  return `You are Threadline, the quiet operator inside a browser. Help the user browse and keep their tabs comprehensible.
+  return `You are Cranny, the quiet operator inside a browser. Help the user browse and keep their tabs comprehensible.
 
 Return ONLY one JSON object with this shape:
 {"message":"short direct response","actions":[{"type":"allowed.action"}],"continue":false}

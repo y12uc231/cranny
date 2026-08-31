@@ -12,9 +12,9 @@ The broad idea is not new. The specific product constraint—an intentionally si
 - Arc popularized vertical tabs, spaces, automatic archival, and tab-chaos reduction before The Browser Company shifted new development toward Dia.
 - Norton Neo and other 2025–2026 entrants have also explored smart tab grouping and AI-driven new-tab experiences.
 
-## Threadline’s intended difference
+## Cranny’s intended difference
 
-Most competitors lead with “the agent can do anything on the web.” Threadline leads with a smaller promise:
+Most competitors lead with “the agent can do anything on the web.” Cranny leads with a smaller promise:
 
 > You can close a tab without losing the thread, and the browser will tell you before the working set becomes unhealthy.
 

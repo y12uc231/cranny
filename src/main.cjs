@@ -7,7 +7,7 @@ const {
   safeStorage,
   session,
 } = require('electron');
-const { ThreadlineStore, makeId, safeDomain } = require('./store.cjs');
+const { CrannyStore, makeId, safeDomain } = require('./store.cjs');
 const { duplicateIds, memoryCandidates, organizeTabs } = require('./organizer.cjs');
 const { parseLocalCommand, requestModelPlan, tabInventoryForPrompt } = require('./agent.cjs');
 
@@ -57,7 +57,7 @@ function createWindow() {
     minWidth: 1040,
     minHeight: 680,
     backgroundColor: '#f4f1ea',
-    title: 'Threadline',
+    title: 'Cranny',
     titleBarStyle: process.platform === 'darwin' ? 'hiddenInset' : 'default',
     trafficLightPosition: { x: 18, y: 22 },
     webPreferences: {
@@ -119,7 +119,7 @@ function buildView(tab) {
   if (tab.view && !tab.view.webContents.isDestroyed()) return tab.view;
   const view = new WebContentsView({
     webPreferences: {
-      partition: 'persist:threadline',
+      partition: 'persist:cranny',
       contextIsolation: true,
       nodeIntegration: false,
       sandbox: true,
@@ -312,7 +312,7 @@ async function snapshotPage(tab = tabs.get(activeTabId)) {
         .slice(0, 140);
       const controls = elements.map((element, index) => {
         const ref = 'e' + (index + 1);
-        element.setAttribute('data-threadline-ref', ref);
+        element.setAttribute('data-cranny-ref', ref);
         return {
           ref,
           role: element.getAttribute('role') || element.tagName.toLowerCase(),
@@ -408,7 +408,7 @@ function sampleMemory() {
       ...lastMemory,
       message:
         lastMemory.status === 'wall'
-          ? 'Threadline reached the memory wall. I can hibernate the oldest background tabs without losing their trail.'
+          ? 'Cranny reached the memory wall. I can hibernate the oldest background tabs without losing their trail.'
           : 'Memory is getting crowded. Your tab trail is safe if you want me to make room.',
     });
   }
@@ -544,7 +544,7 @@ async function executeAction(action) {
 
 async function runPageControl(tab, ref, kind, text = '', submit = false) {
   if (!tab?.view || !/^e\d+$/.test(String(ref))) return { type: `page.${kind}`, ok: false };
-  const selector = JSON.stringify(`[data-threadline-ref="${ref}"]`);
+  const selector = JSON.stringify(`[data-cranny-ref="${ref}"]`);
   const value = JSON.stringify(cleanText(text, 4000));
   const script = kind === 'click'
     ? `(() => { const el = document.querySelector(${selector}); if (!el) return false; el.click(); return true; })()`
@@ -646,7 +646,7 @@ function registerIpc() {
 }
 
 app.whenReady().then(() => {
-  store = new ThreadlineStore(path.join(app.getPath('userData'), 'threadline.json'));
+  store = new CrannyStore(path.join(app.getPath('userData'), 'cranny.json'));
   registerIpc();
   session.defaultSession.setPermissionRequestHandler((contents, permission, callback) => {
     callback(contents === window?.webContents && permission === 'media');
